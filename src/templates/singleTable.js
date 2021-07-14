@@ -25,10 +25,7 @@ function SingleTable(prop){
 
 	useEffect(() =>{
 		if(data !== false){
-		
 			setFooter( makeTableFooter(data, start, end ));
-			
-
 		}
 	},[start,end])
 
@@ -48,10 +45,10 @@ function SingleTable(prop){
 		
 		var table_info = data.map((v,k) =>
 			<tr key={"single_row_"+k} data-date={moment(new Date(v.date)).format("YYYY-MM-DD")}>
-				<td id={"single_rank_"+k}>{eval(k+1) }</td>
-				<td id={"single_date_"+k} >{new Date(v.date).toString().substr(4).split(' G')[0].split('00:')[0]}</td>
-				<td id ={"single_events_"+k}>{v.event_count}</td>
-				<td id={"single_bet_"+k}>{<NumberFormat 
+				<td data-label="Rank" id={"single_rank_"+k}>{eval(k+1) }</td>
+				<td data-label="Date" id={"single_date_"+k} >{new Date(v.date).toString().substr(4).split(' G')[0].split('00:')[0]}</td>
+				<td data-label="# of Completed Events" id ={"single_events_"+k}>{v.event_count}</td>
+				<td data-label="Single Bets" id={"single_bet_"+k}>{<NumberFormat 
 										value={v.wgr_total}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -66,8 +63,8 @@ function SingleTable(prop){
 										decimalScale={2}
 									/>})
 				</td>
-				<td id={"single_bet_count_"+k}>{v.bet_count}</td>
-				<td id={"single_payout_"+k}>{<NumberFormat 
+				<td data-label="# of Single Bets" id={"single_bet_count_"+k}>{v.bet_count}</td>
+				<td data-label="Single Bets Payout" id={"single_payout_"+k}>{<NumberFormat 
 										value={v.wgr_payout}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -82,7 +79,7 @@ function SingleTable(prop){
 										decimalScale={2}
 									/>})
 				</td>
-				<td id={"single_chnage_"+k}>{<NumberFormat 
+				<td data-label="Single Bets Supply Change" id={"single_chnage_"+k}>{<NumberFormat 
 										value={eval(v.wgr_payout - v.wgr_total)}
 										suffix={' WGR'}
 										displayType={"text"}

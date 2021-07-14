@@ -48,3 +48,31 @@
 .header-option{
 	margin: 0.5rem;
 }
+
+@media only screen and (max-width : 600px) {
+	.header-container {
+	    display: flex;
+	    flex-direction: column;
+	    flex-wrap: wrap;
+	    min-height: 5rem;
+	    background-color: #ab0000;
+	    min-width: 100%;
+	}
+	.header-logo-c {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    margin-bottom: 1rem;
+	}
+	.header-options-list {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    color: white;
+	    font-size: 1.15rem;
+	    font-weight: bold;
+	    margin-left: 0.5rem;
+	}
+}

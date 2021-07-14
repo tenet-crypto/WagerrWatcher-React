@@ -5,8 +5,13 @@ import Sidebar from './templates/sidebar.js';
 import TopOpenEvents from './templates/topOpenEvents.js';
 import BigBets from './templates/bigBets.js';
 import Stats from './templates/stats.js';
+import UFCPicks from './templates/ufcPicks.js';
+import Links from './templates/links.js';
+
+import getOpenEvents from './templates/fetch/getOpenEvents.js';
 import getAll from './templates/fetch/getAll.js';
-import getCoin from './templates/fetch/getCoin.js'
+import getCoin from './templates/fetch/getCoin.js';
+import getPicks from './templates/fetch/getPicks.js';
 
 import {
   BrowserRouter as Router,
@@ -30,9 +35,11 @@ function App() {
             <div className="page-data-container">
             
               <Switch>
-                <Route exact path='/'><TopOpenEvents /></Route>
-                <Route exact path='/BigBets'><BigBets /></Route>
+                <Route exact path='/'><TopOpenEvents data={getOpenEvents()} coin={getCoin()} /></Route>
+                <Route exact path='/BigBets'><BigBets data={getOpenEvents()} coin={getCoin()} /></Route>
                 <Route exact path='/Stats'><Stats data={getAll()} coin={getCoin()} /></Route>
+                <Route exact path='/UFCPicks'><UFCPicks data={getPicks()}  /></Route>
+                <Route exact path='/links'><Links/></Route>
               </Switch>
 
             </div>

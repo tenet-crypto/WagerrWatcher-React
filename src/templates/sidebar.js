@@ -13,8 +13,8 @@ function Sidebar(){
 					<NavLink id="top_open_button" className="side-bar-item" activeClassName="side-bar-item-active" exact to="/">Top Open Events</NavLink>
 					<NavLink id="big_bets_button" className="side-bar-item" activeClassName="side-bar-item-active" to="/BigBets">Big Bets</NavLink>
 					<NavLink id="stats_button" className="side-bar-item" activeClassName="side-bar-item-active"  to="/Stats" >Betting Volume/Stats</NavLink>
-					<div id="picks_button" className="side-bar-item" >UFC Picks</div>
-					<div id="links_button" className="side-bar-item" >Links</div>
+					<NavLink id="picks_button" className="side-bar-item" activeClassName="side-bar-item-active"  to="/UFCPicks" >UFC Picks</NavLink>
+					<NavLink id="links_button" className="side-bar-item" activeClassName="side-bar-item-active" to="/links" >Links</NavLink>
 				</div>
 			</div>
 		</div>

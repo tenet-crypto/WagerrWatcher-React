@@ -1,0 +1,71 @@
+.ufc-table{
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	border: 6px solid #b40101;
+	margin-top: 2rem;
+	background-color: white;
+}
+.Ufc_table_confidence{
+	display: flex;
+	flex-direction: row;
+	width: 85%;
+	justify-content: space-evenly;
+	font-size: 0.85rem;
+	font-weight: bold;
+	margin: 1rem 0 1rem 0;
+}
+.Ufc_table_note{
+	font-size: 0.85rem;
+	font-weight: bold;
+}
+.table-pick{
+	font-weight: bold;
+	border: 2px solid black;
+	text-align: center;
+	background-color: lightgreen!important;
+	
+}
+.table_Very{
+	text-align: center;
+	font-weight: bold;
+	background-color: green!important;
+	border: 2px solid black;
+}
+.table_Confident{
+	text-align: center;
+	font-weight: bold;
+	background-color: orange!important;
+	border: 2px solid black;
+}
+.table_Not{
+	text-align: center;
+	font-weight: bold;
+	background-color: red!important;
+	border: 2px solid black;
+}
+
+@media only screen and (max-width : 600px) {
+	.ufc-table {
+	    display: flex;
+	    flex-direction: column;
+	    min-width: 100%;
+	    border: 6px solid #b40101;
+	    margin-top: 2rem;
+	    background-color: white;
+	}
+	.Ufc_table_confidence {
+	    display: flex;
+	    flex-direction: row;
+	    width: 100%;
+	    justify-content: space-evenly;
+	    font-size: 0.85rem;
+	    font-weight: bold;
+	    margin: 1rem 0 1rem 0;
+	}
+	.Ufc_table_confidence div{
+		text-align: center;
+	}
+	
+
+}

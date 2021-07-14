@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-function getCoin(){
+function getPicks(){
 		const [error, setError] = useState(null);
 		const [isLoaded, setIsLoaded] = useState(false);
-		const [coin, setCoin] = useState([]);
+		const [picks, setPicks] = useState([]);
 
 		useEffect(() => {
-			fetch("https://explorer.wagerr.com/api/coin/")
+			fetch("https://script.google.com/macros/s/AKfycbwR8r3fyIyf4XPEe2KtZabyZ0GgBFs8Br4aknT0MECNZmZmFYvV2OLMaqIN7WHSD88PBA/exec")
 			.then(res => res.json())
 			.then(data => {
-				setCoin(data);
+				setPicks(data);
 				setIsLoaded(true);
 				
 			},
@@ -23,13 +23,13 @@ function getCoin(){
 		if (error) {
 		  return error.message;
 		} else if (isLoaded == false) {
-		  return 'loading';
+		  return false;
 		} else {
-			return coin;
+			return picks;
 			
 	}
 
 
 }
 
-export default getCoin;
+export default getPicks;

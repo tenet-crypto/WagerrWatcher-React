@@ -15,14 +15,12 @@ function ParlayTable(prop){
 		if(data !== false){
 			//get start and stop dats
 			var dates = sortDates(data);
-			console.log(dates[0]);
 			//set dates
 			setStart(dates[0]);
 			setEnd(dates[1]);
 			setRows( makeTableRows(data) );
 		}
 	},[prop.data])
-
 
 	useEffect(() =>{
 		if(data !== false){
@@ -44,9 +42,9 @@ function ParlayTable(prop){
 		
 		var table_info = data.map((v,k) =>
 			<tr key={"parlay_row_"+k} data-date={moment(new Date(v.date)).format("YYYY-MM-DD")}>
-				<td id={"parlay_rank_"+k}>{eval(k+1) }</td>
-				<td id={"parlay_date_"+k}>{new Date(v.date).toString().substr(4).split(' G')[0].split('00:')[0]}</td>
-				<td id={"parlay_bet_"+k}>{<NumberFormat 
+				<td data-label="Rank" id={"parlay_rank_"+k}>{eval(k+1) }</td>
+				<td data-label="Date" id={"parlay_date_"+k}>{new Date(v.date).toString().substr(4).split(' G')[0].split('00:')[0]}</td>
+				<td data-label="Parlay Bets" id={"parlay_bet_"+k}>{<NumberFormat 
 										value={v.wgr_total}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -61,8 +59,8 @@ function ParlayTable(prop){
 										decimalScale={2}
 									/>})
 				</td>
-				<td id={"parlay_bet_count_"+k}>{v.bet_count}</td>
-				<td id={"parlay_payout_"+k}>{<NumberFormat 
+				<td data-label="# of Parlay Bets" id={"parlay_bet_count_"+k}>{v.bet_count}</td>
+				<td data-label="Parlay Payout" id={"parlay_payout_"+k}>{<NumberFormat 
 										value={v.wgr_payout}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -77,7 +75,7 @@ function ParlayTable(prop){
 										decimalScale={2}
 									/>})
 				</td>
-				<td id={"parlay_change_"+k}>{<NumberFormat 
+				<td data-label="Parlay Supply Change" id={"parlay_change_"+k}>{<NumberFormat 
 										value={eval(v.wgr_payout - v.wgr_total)}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -97,7 +95,6 @@ function ParlayTable(prop){
 
 		return table_info
 	}
-
 	function sortTable(){
 		///get value of both and conver to unix time
 		var s_date = moment(document.getElementsByName("start")[0].value).format("YYYY-MM-DD");
@@ -125,7 +122,6 @@ function ParlayTable(prop){
 			return new_date;
 		}
 	}
-
 	function sortDates(data){
 		var start = "";
 		var end = "";

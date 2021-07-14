@@ -7,21 +7,19 @@ import NumberFormat from 'react-number-format';
 import {useSelector} from 'react-redux';
 
 
-function BigBets(){
-	var coinInfo = getCoin();
-	var events = getOpenEvents();
-
+function BigBets(prop){
+	var events = prop.data;
+	var coinInfo = prop.coin;
+	
 	//set init to loading
-	var bet_count= 'Loading...';
+	var bet_count = 'Loading...';
 	var actual_count = 'Loading...'
 	var wgr_total_2 = 'Loading...';
 	var usd_total_2 = 'Loading...';
 
 
 
-	if (events == 'loading' || events == ''){
-		console.log("there was an error");
-	}else{
+	if (events !== false){
 		//create actions array
 		var actions = events[1].actions.map((v) => 
 			({eventId: v.eventId, betType: v.betChoose, betValue: v.betValue, created: v.createdAt})
@@ -95,12 +93,12 @@ function BigBets(){
 		//append sorted events
 		var sorted_bigBets = big_bets.map((v,k) => 
 			<tr key={"table_row_"+k}>
-				<td id={"rank_"+k}>{eval(k+1)}</td>
-				<td id={"big_"+v.eventId}><a target="_blank" href={"https://explorer.wagerr.com/#/bet/event/"+v.eventId}>{v.eventId}</a></td>
-				<td id={"type_"+k}>{v.betType}</td>
-				<td id={"team_"+k}>{v.team}</td>
-				<td id={"created_"+k}>{new Date(v.created).toString().substr(4).split(' G')[0]}</td>
-				<td id={"betWgr_"+k}>{<NumberFormat 
+				<td data-label="Rank" id={"rank_"+k}>{eval(k+1)}</td>
+				<td data-label="Event Id" id={"big_"+v.eventId}><a target="_blank" href={"https://explorer.wagerr.com/#/bet/event/"+v.eventId}>{v.eventId}</a></td>
+				<td data-label="Bet Type" id={"type_"+k}>{v.betType}</td>
+				<td data-label="Team" id={"team_"+k}>{v.team}</td>
+				<td data-label="Time" id={"created_"+k}>{new Date(v.created).toString().substr(4).split(' G')[0]}</td>
+				<td data-label="Total Bet WGR" id={"betWgr_"+k}>{<NumberFormat 
 											value={v.betValue}
 											suffix={' WGR'}
 											displayType={"text"}
@@ -108,7 +106,7 @@ function BigBets(){
 											decimalScale={0}
 										/>}
 				</td>
-				<td id={"betUsd_"+k}>{<NumberFormat 
+				<td data-label="Total Bet USD" id={"betUsd_"+k}>{<NumberFormat 
 										value={eval(coinInfo.usd*v.betValue)}
 										prefix={'$'}
 										displayType={"text"}

@@ -21,20 +21,22 @@ function getOpenEvents(){
 				setIsLoaded(true);
 			},
 			(error) =>{
-				setIsLoaded(true);
 				setError(error);
+				setIsLoaded(true);
+				
 			})
 		},
 		(error) =>{
-			setIsLoaded(true);
 			setError(error);
+			setIsLoaded(true);
+			
 		})
 	},[])
 
 	if (error) {
 	  return error.message;
 	} else if (isLoaded == false) {
-	  return 'loading';
+	  return false;
 	} else {
 		return [open, openActions];
 		

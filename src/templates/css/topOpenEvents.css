@@ -76,3 +76,19 @@
 	font-weight: bold;
 	font-size: 0.8rem;
 }
+
+/*Mobile*/
+@media only screen and (max-width : 600px) {
+	.top-open-container {
+	    display: flex;
+	    flex-direction: column;
+	    min-width: 100%;
+	    width: 75%;
+	    margin-top: 2.5rem;
+	    border: 6px solid #b40101;
+	    background-color: white;
+	}
+	
+	
+
+}

@@ -43,9 +43,9 @@ function TotalTable(prop){
 		
 		var table_info = data.map((v,k) =>
 			<tr key={"totals_row_"+k} data-date={moment(new Date(v.date)).format("YYYY-MM-DD")} > 
-				<td id={"totals_rank_"+k}>{eval(k+1) }</td>
-				<td id={"totals_date_"+k}>{new Date(v.date).toString().substr(4).split(' G')[0].split('00:')[0]}</td>
-				<td id={"totals_bet_"+k}>{<NumberFormat 
+				<td data-label="Rank" id={"totals_rank_"+k}>{eval(k+1) }</td>
+				<td data-label="Date" id={"totals_date_"+k}>{new Date(v.date).toString().substr(4).split(' G')[0].split('00:')[0]}</td>
+				<td data-label="Total Bet" id={"totals_bet_"+k}>{<NumberFormat 
 										value={eval(v.single + v.parlay)}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -61,7 +61,7 @@ function TotalTable(prop){
 									/>})
 				</td>
 
-				<td id={"totals_payout_"+k}>{<NumberFormat 
+				<td data-label="Total Mint" id={"totals_payout_"+k}>{<NumberFormat 
 										value={v.mint}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -77,7 +77,7 @@ function TotalTable(prop){
 									/>})
 				</td>
 
-				<td id={"totals_change_"+k}>{<NumberFormat 
+				<td data-label="Total Supply Change" id={"totals_change_"+k}>{<NumberFormat 
 										value={eval(v.mint - eval(v.single + v.parlay))}
 										suffix={' WGR'}
 										displayType={"text"}
@@ -92,7 +92,7 @@ function TotalTable(prop){
 										decimalScale={2}
 									/>})
 				</td>
-				<td id={"totals_bet_count_"+k}>{eval(v.parlay_count + v.single_count)}</td>
+				<td data-label="Total # of Bets" id={"totals_bet_count_"+k}>{eval(v.parlay_count + v.single_count)}</td>
 			</tr>
 		)
 

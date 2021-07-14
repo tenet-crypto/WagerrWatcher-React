@@ -5,19 +5,16 @@ import getOpenEvents from './fetch/getOpenEvents.js';
 import NumberFormat from 'react-number-format';
 import { useSelector } from 'react-redux';
 
-function TopOpenEvents(){
-	var events = getOpenEvents();
-	var coinInfo = getCoin();
-
+function TopOpenEvents(prop){
+	var events = prop.data;
+	var coinInfo = prop.coin;
 
 	//set init to loading
 	var open_count= 'Loading...';
 	var wgr_total_2 = 'Loading...';
 	var usd_total_2 = 'Loading...';
 
-	if (events == 'loading' || events == ''){
-		console.log("there was an error");
-	}else{
+	if (events !== false){
 		//build top open table
 		var open_events =[];
 		events[0].events.forEach(function(v,k){
@@ -37,12 +34,12 @@ function TopOpenEvents(){
 		//append sorted events
 		var sorted_events = open_events.map((v,k) => 
 			<tr key={"table_row_"+k}>
-				<td id={"rank_"+k}>{eval(k+1)}</td>
-				<td id={"open_"+v.eventId}><a target="_blank" href={"https://explorer.wagerr.com/#/bet/event/"+v.eventId}>{v.eventId}</a></td>
-				<td id={"league_"+k}>{v.league}</td>
-				<td id={"home_"+k}>{v.home}</td>
-				<td id={"away_"+k}>{v.away}</td>
-				<td id={"betWgr_"+k}>{<NumberFormat 
+				<td data-label="Rank" id={"rank_"+k}>{eval(k+1)}</td>
+				<td data-label="Event Id" id={"open_"+v.eventId}><a target="_blank" href={"https://explorer.wagerr.com/#/bet/event/"+v.eventId}>{v.eventId}</a></td>
+				<td data-label="League" id={"league_"+k}>{v.league}</td>
+				<td data-label="Home" id={"home_"+k}>{v.home}</td>
+				<td data-label="Away" id={"away_"+k}>{v.away}</td>
+				<td data-label="Total Bet WGR" id={"betWgr_"+k}>{<NumberFormat 
 											value={v.betValue}
 											suffix={' WGR'}
 											displayType={"text"}
@@ -50,7 +47,7 @@ function TopOpenEvents(){
 											decimalScale={0}
 										/>}
 				</td>
-				<td id={"betUsd_"+k}>{<NumberFormat 
+				<td data-label="Total Bet USD" id={"betUsd_"+k}>{<NumberFormat 
 										value={eval(coinInfo.usd*v.betValue)}
 										prefix={'$'}
 										displayType={"text"}
