@@ -45,7 +45,7 @@
 	border: 2px solid black;
 }
 
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 825px) {
 	.ufc-table {
 	    display: flex;
 	    flex-direction: column;

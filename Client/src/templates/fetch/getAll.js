@@ -5,6 +5,8 @@ function getAll(){
 	const single = getStatsSingle();
 	const parlay = getStatsParlay();
 	const mint = getStatsMint();
+	var api = "https://wagerrwatcher.com/api";
+	var localhost = "http://localhost:3001/api";
 
 	function getStatsSingle(){
 		const [error, setError] = useState(null);
@@ -14,7 +16,7 @@ function getAll(){
 		
 
 		useEffect(() => {
-			fetch("http://localhost:3001/api/get/single/daily")
+			fetch(api + "/get/single/daily")
 			.then(res => res.json())
 			.then(data => {
 				setSingle(data);
@@ -46,7 +48,7 @@ function getAll(){
 		
 		useEffect(() => {
 			//get paraly
-			fetch("http://localhost:3001/api/get/parlay/daily")
+			fetch(api + "/get/parlay/daily")
 			.then(res => res.json())
 			.then(data => {
 				setParlay(data);
@@ -76,7 +78,7 @@ function getAll(){
 
 		useEffect(() => {
 			//get mint
-			fetch("http://localhost:3001/api/get/total")
+			fetch(api + "/get/total")
 			.then(res => res.json())
 			.then(data => {
 				setMint(data);

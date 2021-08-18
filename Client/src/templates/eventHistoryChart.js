@@ -200,7 +200,8 @@ function EventHistoryChart(prop){
 		            	title: {
 		            		display: true,
 		            		text: 'WGR'
-		            	}
+		            	},
+		            	position: 'left',
 		            },
 		            y2:{
 		            	title: {

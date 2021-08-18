@@ -10,15 +10,13 @@ function StatsChart(prop){
 	function createChart(data){
 		var data_total = [];
 		var data_win = [];
-		data.forEach(function(v,k){
-			var date = new Date(v.date);
-			var year = date.getFullYear();
-			var month = eval(date.getMonth()+1);
-			var day = date.getDate();
 
-			data_total.push( {x: moment(v.date), y: v.wgr_bet} );
-			data_win.push( {x: moment(v.date), y: v.wgr_payout} );
+		data.forEach(function(v,k){
+			data_total.push( {x: v.date, y: v.wgr_bet} );
+			data_win.push( {x: v.date, y: v.wgr_payout} );
 		});
+
+		console.log(data_total);
 
 		var ctx = document.getElementById('myChart');
 		var myChart = new Chart(ctx, {
@@ -40,6 +38,12 @@ function StatsChart(prop){
 
 			},
 			options: {
+				layout: {
+				            padding: {
+				            	left: 10,
+				                right: 20
+				            }
+				},
 				maintainAspectRatio: false,
 				plugins: {
 			      	zoom: {
@@ -66,7 +70,20 @@ function StatsChart(prop){
 			      			display: true,
 			      			text: "Click below to add or remove data",
 			      		}
-			      	}					      		
+			      	},
+			      	tooltip: {
+			      		callbacks: {
+			      			title: function(tooltipitem, data) {
+  		                        
+  		        				var x_val = tooltipitem[0].parsed.x;
+  		                        var new_label = moment.utc(x_val).format("dddd MMM DD, YYYY");
+
+  		                        return new_label;
+  		                    }
+  		                    
+  		                }
+  						
+  					}					      		
 			    },
 				scales: {
 
@@ -83,9 +100,8 @@ function StatsChart(prop){
 		                    	day: 'MMM DD, YYYY',
 		                    	month: 'MMM YYYY',
 		                    	week: 'MMM DD, YYYY',
-		                    	
 		                    },
-		                    tooltipFormat: 'dddd MMM DD, YYYY', 
+		                    tooltipFormat: 'YYYY-MMM-DD', 
 		                },
 		                
 		            },
@@ -112,17 +128,13 @@ function StatsChart(prop){
 		var bet_count = [];
 
 		data.forEach(function(v,k){
-			var date = new Date(v.date);
-			var year = date.getFullYear();
-			var month = eval(date.getMonth()+1);
-			var day = date.getDate();
 
 			var bet = v.total_wgr_bet;
 			var count = v.total_bets_placed;
 
-			mint_total.push( {x: moment(v.date), y: v.total_transaction } );
-			bet_total.push( {x: moment(v.date), y: v.total_wgr_bet } );
-			bet_count.push( {x: moment(v.date), y: v.total_bets_placed } );
+			mint_total.push( {x: v.date, y: v.total_transaction } );
+			bet_total.push( {x: v.date, y: v.total_wgr_bet } );
+			bet_count.push( {x: v.date, y: v.total_bets_placed } );
 			
 		});
 
@@ -148,6 +160,12 @@ function StatsChart(prop){
 
 			},
 			options: {
+				layout: {
+				            padding: {
+				            	left: 10,
+				                right: 20
+				            }
+				},
 				maintainAspectRatio: false,
 				plugins: {
 			      	zoom: {
@@ -175,7 +193,20 @@ function StatsChart(prop){
 			      			display: true,
 			      			text: "Click below to add or remove data",
 			      		}
-			      	}					      		
+			      	},
+			      	tooltip: {
+			      		callbacks: {
+			      			title: function(tooltipitem, data) {
+  		                        
+  		        				var x_val = tooltipitem[0].parsed.x;
+  		                        var new_label = moment.utc(x_val).format("dddd MMM DD, YYYY");
+
+  		                        return new_label;
+  		                    }
+  		                    
+  		                }
+  						
+  					}					      		
 			    },
 				scales: {
 

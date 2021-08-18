@@ -44,7 +44,7 @@ function SingleTable(prop){
 
 		
 		var table_info = data.map((v,k) =>
-			<tr key={"single_row_"+k} data-date={moment(new Date(v.date)).format("YYYY-MM-DD")}>
+			<tr key={"single_row_"+k} data-date={moment.utc(new Date(v.date)).format("YYYY-MM-DD")}>
 				<td data-label="Rank" id={"single_rank_"+k}>{eval(k+1) }</td>
 				<td data-label="Date" id={"single_date_"+k} >{ moment.utc(v.date).format("MMM DD, YYYY") }</td>
 				<td data-label="# of Completed Events" id ={"single_events_"+k}>{v.event_count}</td>
@@ -102,8 +102,8 @@ function SingleTable(prop){
 
 	function sortTable(){
 		///get value of both and conver to unix time
-		var s_date = moment(document.getElementsByName("start")[0].value).format("YYYY-MM-DD");
-		var e_date = moment(document.getElementsByName("end")[0].value).format("YYYY-MM-DD");
+		var s_date = moment.utc(document.getElementsByName("start")[0].value).format("YYYY-MM-DD");
+		var e_date = moment.utc(document.getElementsByName("end")[0].value).format("YYYY-MM-DD");
 
 		//hide table rows
 		var t_body = document.getElementsByClassName("table-sort")[0];
@@ -136,9 +136,9 @@ function SingleTable(prop){
 		data.forEach(function(v,k){
 			//query = first = oldest
 			if(k === 0){
-				start = moment(v.date).format("YYYY-MM-DD");	
+				start = moment.utc(v.date).format("YYYY-MM-DD");	
 			}
-			end = moment(v.date).format("YYYY-MM-DD");
+			end = moment.utc(v.date).format("YYYY-MM-DD");
 			
 		});
 
@@ -162,7 +162,7 @@ function SingleTable(prop){
 
 		//sum table totals
 		data.forEach(function(v,k){
-			if( unixTime(moment(v.date).format("YYYY-MM-DD")) >= unixTime(start) && unixTime(moment(v.date).format("YYYY-MM-DD")) <= unixTime(end) ){
+			if( unixTime(moment.utc(v.date).format("YYYY-MM-DD")) >= unixTime(start) && unixTime(moment.utc(v.date).format("YYYY-MM-DD")) <= unixTime(end) ){
 				total_events_count += v.event_count;
 				total_bet += v.wgr_bet;
 				total_bets_count += v.bets_placed;
@@ -199,7 +199,7 @@ function SingleTable(prop){
 							displayType={"text"}
 							thousandSeparator={true}
 							decimalScale={2}
-						/>}
+						/>})
 				</td>
 				<td data-label="# of Bets" id="table_total_single_count">{<NumberFormat
 							value={total_bets_count}
@@ -221,7 +221,7 @@ function SingleTable(prop){
 							displayType={"text"}
 							thousandSeparator={true}
 							decimalScale={2}
-						/>}
+						/>})
 				</td>
 				<td data-label="Supply Change" id="table_total_single_change">{<NumberFormat 
 							value={total_change}
@@ -236,7 +236,7 @@ function SingleTable(prop){
 							displayType={"text"}
 							thousandSeparator={true}
 							decimalScale={2}
-						/>}
+						/>})
 				</td>
 			</tr>
 		)	

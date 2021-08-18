@@ -40,7 +40,7 @@
 }
 
 
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 825px) {
 	.side-bar {
 	    display: flex;
 	    flex-direction: row;
@@ -63,6 +63,10 @@
 		border: 1px solid white;   
 	    font-weight: bold;
 	   	min-width: 9rem;
+	}
+	.side-bar-item-active{
+		opacity: 1;
+		
 	}
 
 }

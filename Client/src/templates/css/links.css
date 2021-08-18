@@ -27,7 +27,7 @@
 }
 
 /*Mobile*/
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 825px) {
 	.donate-input{
 		width: 95%;
 		margin-bottom: 1rem;

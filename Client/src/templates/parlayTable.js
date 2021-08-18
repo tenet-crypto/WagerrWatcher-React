@@ -41,7 +41,7 @@ function ParlayTable(prop){
 	function makeTableRows(data){
 		
 		var table_info = data.map((v,k) =>
-			<tr key={"parlay_row_"+k} data-date={moment(new Date(v.date)).format("YYYY-MM-DD")}>
+			<tr key={"parlay_row_"+k} data-date={moment.utc(new Date(v.date)).format("YYYY-MM-DD")}>
 				<td data-label="Rank" id={"parlay_rank_"+k}>{eval(k+1) }</td>
 				<td data-label="Date" id={"parlay_date_"+k}>{ moment.utc(v.date).format("MMM DD, YYYY") }</td>
 				<td data-label="Parlay Bets" id={"parlay_bet_"+k}>{<NumberFormat 
@@ -97,8 +97,8 @@ function ParlayTable(prop){
 	}
 	function sortTable(){
 		///get value of both and conver to unix time
-		var s_date = moment(document.getElementsByName("start")[0].value).format("YYYY-MM-DD");
-		var e_date = moment(document.getElementsByName("end")[0].value).format("YYYY-MM-DD");
+		var s_date = moment.utc(document.getElementsByName("start")[0].value).format("YYYY-MM-DD");
+		var e_date = moment.utc(document.getElementsByName("end")[0].value).format("YYYY-MM-DD");
 
 		//hide table rows
 		var t_body = document.getElementsByClassName("table-sort")[0];
@@ -129,9 +129,9 @@ function ParlayTable(prop){
 		//sum table totals
 		data.forEach(function(v,k){
 			if(k === 0){
-				start = moment(v.date).format("YYYY-MM-DD");
+				start = moment.utc(v.date).format("YYYY-MM-DD");
 			}
-			end = moment(v.date).format("YYYY-MM-DD");
+			end = moment.utc(v.date).format("YYYY-MM-DD");
 		});
 
 		return [start, end];
@@ -153,7 +153,7 @@ function ParlayTable(prop){
 
 		//sum table totals
 		data.forEach(function(v,k){
-			if( unixTime(moment(v.date).format("YYYY-MM-DD")) >= unixTime(start) && unixTime(moment(v.date).format("YYYY-MM-DD")) <= unixTime(end) ){
+			if( unixTime(moment.utc(v.date).format("YYYY-MM-DD")) >= unixTime(start) && unixTime(moment.utc(v.date).format("YYYY-MM-DD")) <= unixTime(end) ){
 				total_bet += v.wgr_bet;
 				total_bets_count += v.parlay_count;
 				total_payout += v.wgr_payout;
@@ -182,7 +182,7 @@ function ParlayTable(prop){
 							displayType={"text"}
 							thousandSeparator={true}
 							decimalScale={2}
-						/>}
+						/>})
 				</td>
 				<td data-label="# of Bets" id="table_total_parlay_count">{<NumberFormat
 							value={total_bets_count}
@@ -204,7 +204,7 @@ function ParlayTable(prop){
 							displayType={"text"}
 							thousandSeparator={true}
 							decimalScale={2}
-						/>}
+						/>})
 				</td>
 				<td data-label="Supply Change" id="table_total_parlay_change">{<NumberFormat 
 							value={total_change}
@@ -219,7 +219,7 @@ function ParlayTable(prop){
 							displayType={"text"}
 							thousandSeparator={true}
 							decimalScale={2}
-						/>}
+						/>})
 				</td>
 			</tr>
 		)	

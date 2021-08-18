@@ -6,7 +6,7 @@ function getEventHistory(){
 	const [events, setEvents] = useState([]);
 
 	useEffect(() => {
-		fetch("http://localhost:3001/api/get/single")
+		fetch("https://wagerrwatcher.com/api/get/single")
 
 		.then(res => res.json())
 		.then(events => {
