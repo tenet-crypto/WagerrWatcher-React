@@ -7,30 +7,41 @@ function getOpenEvents(){
 	const [openActions, setopenActions] = useState([]);
 
 	useEffect(() => {
-		fetch("https://explorer.wagerr.com/api/bet/openevents")
-		.then(res => res.json())
-		.then(events => {
-			setOpen(events);
 
-			//get actions for all open events
-			var open_events_id = events.events.map((v) => 'eventId='+v.eventId+'&').join("");
-			fetch("https://explorer.wagerr.com/api/bet/actions?"+open_events_id)
-			.then(res2 => res2.json())
-			.then(data => {
-				setopenActions(data);
-				setIsLoaded(true);
-			},
-			(error) =>{
+		const fetch_open_events = async () =>{
+			try{
+				const response = await fetch("https://explorer.wagerr.com/api/bet/openevents");
+				const json = await response.json();
+				setOpen(json);
+				const open_events_id = json.events.map((v) => 'eventId='+v.eventId+'&').join("");
+				fetch_open_actions(open_events_id);
+
+
+			} catch(error){
 				setError(error);
 				setIsLoaded(true);
-				
-			})
-		},
-		(error) =>{
-			setError(error);
-			setIsLoaded(true);
-			
-		})
+
+			}
+		};
+
+		const fetch_open_actions = async (eventId) =>{
+			try{
+				const response = await fetch("https://explorer.wagerr.com/api/bet/actions?"+eventId)
+				const json = await response.json();
+				setopenActions(json);
+				setIsLoaded(true);
+
+
+			} catch(error){
+				setError(error);
+				setIsLoaded(true);
+
+			}
+		};
+
+		fetch_open_events();
+
+		
 	},[])
 
 	if (error) {

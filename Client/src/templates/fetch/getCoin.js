@@ -6,18 +6,20 @@ function getCoin(){
 		const [coin, setCoin] = useState([]);
 
 		useEffect(() => {
-			fetch("https://explorer.wagerr.com/api/coin/")
-			.then(res => res.json())
-			.then(data => {
-				setCoin(data);
-				setIsLoaded(true);
-				
-			},
-			(error) =>{
-				setError(error);
-				setIsLoaded(true);
-				
-			})
+			const fetch_coin = async () =>{
+				try{
+					const response = await fetch("https://explorer.wagerr.com/api/coin/")
+					const json = await response.json();
+					setCoin(json);
+					setIsLoaded(true);
+
+				} catch(error){
+					setError(error);
+					setIsLoaded(true);
+				}
+			};
+
+			fetch_coin();
 		},[])
 
 		if (error) {

@@ -6,18 +6,21 @@ function getEventHistory(){
 	const [events, setEvents] = useState([]);
 
 	useEffect(() => {
-		fetch("https://wagerrwatcher.com/api/get/single")
+		const fetch_history = async () =>{
+			try{
+				const response = await fetch("https://wagerrwatcher.com/api/get/single")
+				const json = await response.json();
+				setEvents(json);
+				setIsLoaded(true);
+				
+			} catch(error){
+				setError(error);
+				setIsLoaded(true);
+			}
+		};
 
-		.then(res => res.json())
-		.then(events => {
-			setEvents(events);
-			setIsLoaded(true);
-		},
-		(error) =>{
-			setError(error);
-			setIsLoaded(true);
-			
-		})
+		fetch_history();
+		
 	},[])
 
 	if (error) {

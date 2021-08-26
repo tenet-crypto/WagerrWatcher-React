@@ -6,18 +6,23 @@ function getPicks(){
 		const [picks, setPicks] = useState([]);
 
 		useEffect(() => {
-			fetch("https://script.google.com/macros/s/AKfycbwR8r3fyIyf4XPEe2KtZabyZ0GgBFs8Br4aknT0MECNZmZmFYvV2OLMaqIN7WHSD88PBA/exec")
-			.then(res => res.json())
-			.then(data => {
-				setPicks(data);
-				setIsLoaded(true);
-				
-			},
-			(error) =>{
-				setError(error);
-				setIsLoaded(true);
-				
-			})
+			const fetch_picks = async () => {
+				try{
+					const response = await fetch("https://script.google.com/macros/s/AKfycbwR8r3fyIyf4XPEe2KtZabyZ0GgBFs8Br4aknT0MECNZmZmFYvV2OLMaqIN7WHSD88PBA/exec");
+					const json = await response.json();
+					setPicks(json);
+					setIsLoaded(true);
+
+
+				} catch(error){
+					setError(error);
+					setIsLoaded(true);
+				}
+			};
+			fetch_picks();
+
+			
+			
 		},[])
 
 		if (error) {

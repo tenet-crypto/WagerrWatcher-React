@@ -1,0 +1,17 @@
+{
+  "name": "cron",
+  "version": "1.0.0",
+  "description": "add to db",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "single": "node wgr_insert_test.js",
+    "parlay": "node wgr_insert_parlay.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.6.1"
+  }
+}

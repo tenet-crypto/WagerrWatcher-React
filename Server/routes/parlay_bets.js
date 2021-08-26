@@ -11,7 +11,7 @@ var router = express.Router();
 //get all events info
 router.get("/", (req, res) =>{
 	//combine like days and sum + count
-	var query = "SELECT CONVERT_TZ(date,'+06:00','+00:00') AS date, wgr_bet AS wgr_bet, wgr_payout AS wgr_Payout, id AS parlay_count, event_id As events  FROM parlay_total ORDER BY date ASC";
+	var query = "SELECT date AS date, wgr_bet AS wgr_bet, wgr_payout AS wgr_Payout, id AS parlay_count, event_id As events  FROM parlay_total ORDER BY date DESC";
 	//run query
 	db.query(query,function(err, result){
 		if(err){

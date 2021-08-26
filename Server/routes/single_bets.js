@@ -7,10 +7,12 @@ const app = express();
 var router = express.Router();
 
 
+
+
 //get all single info
 router.get("/", (req, res) =>{
 	//combine like days and sum + count
-	const query = "SELECT CONVERT_TZ(date,'+06:00','+00:00') AS date, wgr_bet AS wgr_bet, wgr_payout AS wgr_payout, bets_placed AS bets_placed, event_id AS event_id, transaction_total AS vout_vin, supply_change AS supply_change\
+	const query = "SELECT date AS date, wgr_bet AS wgr_bet, wgr_payout AS wgr_payout, bets_placed AS bets_placed, event_id AS event_id, transaction_total AS vout_vin, supply_change AS supply_change\
 				   FROM events_total ORDER BY date DESC";
 	//run query
 	db.query(query,function(err, result){
@@ -38,6 +40,10 @@ router.get("/daily", (req, res) =>{
 			//output data
 			var data = JSON.parse(JSON.stringify(result));
 			res.send(data);
+
+			var timers = Intl.DateTimeFormat().resolvedOptions().timeZone 
+			console.log(timers);
+
 		}
 	});
 });

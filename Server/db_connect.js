@@ -4,7 +4,8 @@ var con = mysql.createConnection({
 	host: 'localhost',
 	user: 'bloooybt_alphadev',
 	password: "",
-	database: 'wgr_test'
+	database: 'wgr_test',
+	timezone: 'UTC'
 
 });
 
