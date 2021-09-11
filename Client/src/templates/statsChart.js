@@ -16,8 +16,6 @@ function StatsChart(prop){
 			data_win.push( {x: v.date, y: v.wgr_payout} );
 		});
 
-		console.log(data_total);
-
 		var ctx = document.getElementById('myChart');
 		var myChart = new Chart(ctx, {
 			type: 'bar',

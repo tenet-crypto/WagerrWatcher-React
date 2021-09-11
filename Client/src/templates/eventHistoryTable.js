@@ -90,7 +90,7 @@ function EventHistoryTable(prop){
 	//make table
 	function makeTableRows(data){
 		if(data === false){
-			console.log('triggered this false');
+			
 			return (
 				<tr key={"loading"}>
 					<td>Loading..</td>
@@ -104,7 +104,7 @@ function EventHistoryTable(prop){
 			)
 		}else{
 			var sliced_data = data.slice(0,100);
-			console.log(sliced_data);
+			
 			var table_rows = sliced_data.map((v,k) =>
 				<tr key={"event_history_row_"+k} data-eventid={v.event_id}>
 					<td data-label="Rank" id={"event_history_rank_"+k}>{eval(k+1) }</td>
