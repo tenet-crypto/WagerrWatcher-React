@@ -20,8 +20,6 @@ function Links(){
 
 	}
 	
-
-
 	return(
 		<div id="links_div" className="top-open-container">
 			<div className="top-open-header">Links</div>
