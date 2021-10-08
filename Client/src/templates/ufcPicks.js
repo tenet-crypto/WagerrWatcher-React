@@ -38,25 +38,25 @@ function UFCPicks(prop){
 					<div className="open-total-item">
 						<div>Total Correct: </div> 
 						<div className="open-span">
-							<span id="UFC_correct">39</span>
+							<span id="UFC_correct">77</span>
 						</div>
 					</div>
 					<div className="open-total-item">
 						<div>Total In-correct: </div> 
 						<div className="open-span">
-							<span id="UFC_incorrect">34</span>
+							<span id="UFC_incorrect">68</span>
 						</div>
 					</div>
 					<div className="open-total-item">
 						<div>Total Picks: </div> 
 						<div className="open-span">
-							<span id="UFC_total">73</span>
+							<span id="UFC_total">121</span>
 						</div>
 					</div>
 					<div className="open-total-item">
 						<div>% Accurate</div>
 						<div className="open-span">
-							<span id="UFC_accurate">53.4%</span>
+							<span id="UFC_accurate">53.1%</span>
 						</div>
 					</div>
 				</div>
