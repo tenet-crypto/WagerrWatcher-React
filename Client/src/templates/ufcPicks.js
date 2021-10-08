@@ -50,7 +50,7 @@ function UFCPicks(prop){
 					<div className="open-total-item">
 						<div>Total Picks: </div> 
 						<div className="open-span">
-							<span id="UFC_total">121</span>
+							<span id="UFC_total">145</span>
 						</div>
 					</div>
 					<div className="open-total-item">
