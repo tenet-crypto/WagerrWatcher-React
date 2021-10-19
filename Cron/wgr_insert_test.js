@@ -67,6 +67,13 @@ function sort_data(data,type){
 					
 				});
 
+				var sport_type = null;
+				//loop through event and get sport
+				if(v.events[0].transaction.sport){
+					sport_type = v.events[0].transaction.sport
+				}
+				
+
 				//loop through results vin
 		        var vin = 0;
 		        v.results[0].payoutTx.vin.forEach(function(vv,kk){
@@ -78,12 +85,14 @@ function sort_data(data,type){
 		          vout += vv.value;
 		        });
 
+
 		        //create obj
-				var obj = {event_id: v._id, date: v.completedAt, wgr_bet: wgr_bet, wgr_payout: wgr_payout, bet_count: bet_count, transaction_total: eval(vout - vin), supply_change: eval((vout - vin) - wgr_bet)};
+				var obj = {event_id: v._id, sport: sport_type, date: v.completedAt, wgr_bet: wgr_bet, wgr_payout: wgr_payout, bet_count: bet_count, transaction_total: eval(vout - vin), supply_change: eval((vout - vin) - wgr_bet)};
 				//add each event obj to vals array
 				vals.push(obj);
 			}else{
 				console.log("not the right date");
+				
 			}
 
 		});
@@ -101,13 +110,13 @@ function sort_data(data,type){
 
 	}else if(type == "day"){
 		//make previous date
-	var prev_start = new Date();
-	prev_start.setDate(prev_start.getDate() - 1);
-	prev_start.setUTCHours(00,00,00,00);
+		var prev_start = new Date();
+		prev_start.setDate(prev_start.getDate() - 1);
+		prev_start.setUTCHours(00,00,00,00);
 
-	var prev_end = new Date();
-	prev_end.setDate(prev_end.getDate() - 1);
-	prev_end.setUTCHours(23,59,59,59);
+		var prev_end = new Date();
+		prev_end.setDate(prev_end.getDate() - 1);
+		prev_end.setUTCHours(23,59,59,59);
 		//loop data array
 		data.data.forEach(function(v,k){
 
@@ -146,8 +155,14 @@ function sort_data(data,type){
 		          vout += vv.value;
 		        });
 
+		        var sport = null;
+				//loop through event and get sport
+				v.events[0].transaction.forEach(function(vv,kk){
+					sport = vv.sport;
+				});
+
 		        //create obj
-				var obj = {event_id: v._id, date: v.completedAt, wgr_bet: wgr_bet, wgr_payout: wgr_payout, bet_count: bet_count, transaction_total: eval(vout - vin), supply_change: eval((vout - vin) - wgr_bet)};
+				var obj = {event_id: v._id, sport: sport, date: v.completedAt, wgr_bet: wgr_bet, wgr_payout: wgr_payout, bet_count: bet_count, transaction_total: eval(vout - vin), supply_change: eval((vout - vin) - wgr_bet)};
 				//add each event obj to vals array
 				vals.push(obj);
 			}else{
@@ -162,8 +177,8 @@ function sort_data(data,type){
 }
 
 function insert_query(data){
-	var values = data.map(v =>([v.event_id, v.date, v.wgr_bet, v.wgr_payout, v.bet_count, v.transaction_total, v.supply_change]));
-	var sql = "INSERT INTO events_total (event_id, date, wgr_bet, wgr_payout, bets_placed, transaction_total, supply_change) VALUES ?"
+	var values = data.map(v =>([v.event_id, v.sport, v.date, v.wgr_bet, v.wgr_payout, v.bet_count, v.transaction_total, v.supply_change]));
+	var sql = "INSERT INTO events_total_2 (event_id, sport, date, wgr_bet, wgr_payout, bets_placed, transaction_total, supply_change) VALUES ?"
 	con.query(sql, [values] , function(err, result){
 		if(err) throw err;
 		if(result){

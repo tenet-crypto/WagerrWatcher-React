@@ -19,9 +19,9 @@ function getAll(){
 				try{
 					//parallel request
 					const [singleResponse, parlayResponse, mintResponse] = await Promise.all([
-						fetch(api + "/get/single/daily"),
-						fetch(api + "/get/parlay/daily"),
-						fetch(api + "/get/total")
+						fetch(localhost + "/get/single/daily"),
+						fetch(localhost + "/get/parlay/daily"),
+						fetch(localhost + "/get/total")
 					]) 
 					const singleJson = await singleResponse.json();
 					const parlayJson = await parlayResponse.json();
