@@ -101,13 +101,13 @@ function sort_data(data,type){
 
 	}else if(type == "day"){
 		//make previous date
-	var prev_start = new Date();
-	prev_start.setDate(prev_start.getDate() - 1);
-	prev_start.setUTCHours(00,00,00,00);
+		var prev_start = new Date();
+		prev_start.setDate(prev_start.getDate() - 1);
+		prev_start.setUTCHours(00,00,00,00);
 
-	var prev_end = new Date();
-	prev_end.setDate(prev_end.getDate() - 1);
-	prev_end.setUTCHours(23,59,59,59);
+		var prev_end = new Date();
+		prev_end.setDate(prev_end.getDate() - 1);
+		prev_end.setUTCHours(23,59,59,59);
 		//loop data array
 		data.data.forEach(function(v,k){
 
