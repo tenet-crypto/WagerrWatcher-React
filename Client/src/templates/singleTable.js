@@ -79,14 +79,14 @@ function SingleTable(prop){
 										decimalScale={2}
 									/>})
 				</td>
-				<td data-label="Single Bets Supply Change" id={"single_chnage_"+k}>{<NumberFormat 
+				<td data-label="Single Bets Supply Change" id={"single_change_"+k}>{<NumberFormat 
 										value={v.supply_change}
 										suffix={' WGR'}
 										displayType={"text"}
 										thousandSeparator={true}
 										decimalScale={0}
 									/>}<br></br>({<NumberFormat 
-										value={v.supply_change}
+										value={eval(v.supply_change* coinInfo.usd)}
 										prefix={'$'}
 										suffix={' USD'}
 										displayType={"text"}

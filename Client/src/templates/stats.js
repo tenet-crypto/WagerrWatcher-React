@@ -20,10 +20,12 @@ function Stats(prop){
 	const [button, setButton] = useState(null);
 
 
-	//load prop data
+	//load intital prop data
 	useEffect(() =>{
 		if(prop.data[0] !== false) {
-			setType('single');
+			if(!type){//only set if false for init conditions
+				setType('single');
+			}
 		}
 
 		if(single !== false && parlay !== false && totalmint !== false){
@@ -33,8 +35,9 @@ function Stats(prop){
 	},[prop.data])
 	
 	 
-	//chnage table data when type changes
+	//change table data when type changes
 	useEffect(() => {
+		
 		if(type == 'parlay'){
 			setData({table: "parlay", data: parlay});			
 		}else if(type == 'totalmint'){
@@ -42,13 +45,17 @@ function Stats(prop){
 		}else if(type == 'single'){
 			setData({table: "single", data: single});
 		}
-
+		
 	},[type])
 
 	//change chart
 	function changeChart(e){
 		var id = e.target.id
-		setType(id)	
+		if(data.table != false || data.data != false){//make sure data is loaded or will revert
+			setType(id);
+		}else{ //page is not loaded yet
+			e.preventDefault();
+		}		
 	}
 	//chart buttons
 	function buttonChart(e){
